@@ -19,8 +19,6 @@ class CreateUsersTable extends Migration
             $table->string('second_name', 100);
             $table->string('login', 50);
             $table->string('pass', 50);
-            $table->boolean('teacher')->default('0');
-            $table->boolean('student')->default('0');
             $table->rememberToken();
             $table->timestamps();
         });
