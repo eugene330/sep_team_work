@@ -15,12 +15,12 @@ class Group extends Model
         'name',
     ];
 
-    public function user()
+    public function teacher()
     {
         return $this->belongsTo(User::class, 'teacher_user_id');
     }
 
-    public function users()
+    public function students()
     {
         return $this->belongsToMany(
             User::class,

@@ -1,23 +1,21 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
-
-                <div class="panel-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    You are logged in!
-                </div>
-            </div>
-        </div>
+    <center><a href="{{ route('groups.create') }}" class="btn btn-success"><i class="fa fa-plus">Создать группу</i></a></center>
+    <div class="home_container">
+        <ul>Группы где Вы преподаватель
+            <li>123</li>
+            <li>123</li>
+            <li>123</li>
+            <li>123</li>
+            <li>123</li>
+        </ul>
+        <ul>Группы где Вы студент
+            <li>123</li>
+            <li>123</li>
+            <li>123</li>
+            <li>123</li>
+            <li>123</li>
+        </ul>
     </div>
-</div>
 @endsection

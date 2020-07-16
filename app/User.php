@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'second_name', 'login', 'pass', 'teacher', 'student',
+        'name', 'second_name', 'password', 'email'
     ];
 
     /**
@@ -27,18 +27,18 @@ class User extends Authenticatable
         'pass', 'remember_token',
     ];
 
-    public function group()
+    public function groupsTeacher()
     {
-        return $this->hasOne(Group::class, 'teacher_user_id');
+        return $this->hasMany(Group::class, 'teacher_user_id');
     }
 
-    public function groups()
+    public function groupsStudents()
     {
         return $this->belongsToMany(
             Group::class,
             'groups_students',
-            'group_id',
-            'student_user_id'
+            'student_user_id',
+            'group_id'
         );
     }
 

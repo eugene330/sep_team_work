@@ -1,0 +1,85 @@
+Страница приветствия
+
+path: /
+view:  welcome.blade.php
+model:
+
+registration:   POST/registration
+path: /registration
+controller: auth
+model: User
+
+
+login:   POST/login
+path: /login
+controller: auth
+model: User
+
+
+Home
+
+	View: home.blade.php
+
+//Кнопка добавления новой группы
+create group: Resourse GET/create   (store)
+path: /
+controller: Group
+model: Group
+
+
+path: GET  /group
+view:  create_group.blade.php
+controller: GroupController@index
+model: Group
+
+group list:
+-where is teacher
+-where is student
+
+Group
+
+
+	Task list
+path:  GET  /group/{id}
+view:  show_group.blade.php
+controller:  TaskController
+model:  Task
+
+//Создание новой задачи
+Task create
+path:  Resourse   GET /create   (store)
+view:  create_task.blade.php
+controller:  TaskController
+model:  Task
+
+
+Users list //TODO
+
+
+Task
+
+	//Показать задание
+path:  GET  /task/{id}
+view:  show_task.blade.php
+controller:  TaskController
+model:  Task
+
+//Cоздать ответ
+path:  GET  /answer/create     (store)
+view:  answer.blade.php
+controller:  AnswerController
+model:  Answers
+
+//Показать ответы
+path:  GET  /task/{id}
+view:  answer.blade.php
+controller:  AnswerController
+model:  Answers
+
+
+
+
+
+
+Controllers!
+-GroupController

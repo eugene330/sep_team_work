@@ -3,9 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class GroupController extends Controller
 {
+    protected  $user;
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->user = Auth::user();
+    }
     /**
      * Display a listing of the resource.
      *
@@ -23,7 +31,7 @@ class GroupController extends Controller
      */
     public function create()
     {
-        //
+        return view("groups.create_group");
     }
 
     /**
@@ -34,7 +42,17 @@ class GroupController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|max:255',
+        ]);
+
+        Auth::user()
+            ->groupsTeacher()
+            ->create(
+                [
+                    'name' => $request->name,
+                ]); //конструктор запроса!!! с уловием user_id текушего пользователя
+        return redirect()->route('home');
     }
 
     /**
