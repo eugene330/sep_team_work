@@ -20,7 +20,7 @@ class Task extends Model
         return $this->belongsTo(User::class, 'student_user_id');
     }
 
-    public function answer()
+    public function answers()
     {
         return $this->hasMany(Answer::class);
     }

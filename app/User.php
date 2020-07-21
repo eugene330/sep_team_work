@@ -32,7 +32,7 @@ class User extends Authenticatable
         return $this->hasMany(Group::class, 'teacher_user_id');
     }
 
-    public function groupsStudents()
+    public function groupsStudent()
     {
         return $this->belongsToMany(
             Group::class,
