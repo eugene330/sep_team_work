@@ -2,6 +2,10 @@
 
 @section('content')
     <div class="container">
-        {{$id}}
+        <ul>Все задания:
+        @foreach ($tasks as $task)
+            <li>{{$task->text}}</li>
+        @endforeach
+        </ul>
     </div>
 @endsection
