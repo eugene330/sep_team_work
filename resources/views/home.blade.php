@@ -10,7 +10,7 @@
         </ul>
         <ul>Группы где Вы студент
             @foreach ($groups_students as $group_students)
-                <li>{{$group_students->name}}</li>
+                <a href="group/{{$group_students->id}}"><li>{{$group_students->name}}</li></a>
             @endforeach
         </ul>
     </div>

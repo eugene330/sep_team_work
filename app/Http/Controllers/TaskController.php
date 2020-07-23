@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Group;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 class TaskController extends Controller
 {
     /**
@@ -11,10 +13,16 @@ class TaskController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id)
-    {   
+    public function index(Group $group)
+    {
+        $arrayStudents = $group->students->pluck('id')->toArray();
+        $arrayTeacher = $group->teacher_user_id;
         
-        return view('groups.show_group', ['id' => $id]);
+        if($arrayTeacher === Auth::user()->id) {
+            dd("teacher");
+        }else if(in_array(Auth::user()->id, $arrayStudents)) {
+            dd("student");
+        }
     }
 
     /**
