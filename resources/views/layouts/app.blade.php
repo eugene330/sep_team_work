@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Учебный центр') }}</title>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
@@ -18,10 +18,8 @@
     <!-- Styles -->
     <style>
         html, body {
-            background-color: #fff;
-            color: #636b6f;
+            color: #0d3625;
             font-family: 'Raleway', sans-serif;
-            font-weight: 100;
             height: 100vh;
             margin: 0;
         }
@@ -55,7 +53,7 @@
         }
 
         .links > a {
-            color: #636b6f;
+            color: #090909;
             padding: 0 25px;
             font-size: 12px;
             font-weight: 600;
@@ -89,7 +87,7 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
+                        {{ config('app.name', 'Учебный центр') }}
                     </a>
                 </div>
 
