@@ -21,4 +21,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('groups', 'GroupController');
     
-Route::get('/group', 'HomeController@index')->name('home');
+Route::get('group/{id}', 'TaskController@index');
