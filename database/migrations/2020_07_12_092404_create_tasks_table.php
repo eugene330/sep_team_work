@@ -17,6 +17,7 @@ class CreateTasksTable extends Migration
             $table->increments('id');
             //$table->dateTime('finish_date');
             $table->timestamp('finish_date');
+            $table->text('title');
             $table->text('text');
             $table->boolean('arhiv');
             $table->integer('group_id')->unsigned();
