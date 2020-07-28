@@ -20,8 +20,8 @@ class TaskController extends Controller
         $arrayTeacher = $group->teacher_user_id;
         
         if($arrayTeacher === Auth::user()->id || in_array(Auth::user()->id, $arrayStudents)) {
-            dd(Task::all());
-            return view('groups.show_group', ['tasks' => Task::all()]);
+            $tasks = $group->tasks;
+            return view('groups.show_group', ['tasks' => $tasks]);
         }
     }
 
@@ -54,7 +54,7 @@ class TaskController extends Controller
      */
     public function show($id)
     {
-        
+        dd($id);
     }
 
     /**

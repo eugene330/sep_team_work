@@ -20,5 +20,8 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('groups', 'GroupController');
-    
+
 Route::get('group/{group}', 'TaskController@index');
+
+Route::get('group/task/{task}', 'AnswerController@index');
+
