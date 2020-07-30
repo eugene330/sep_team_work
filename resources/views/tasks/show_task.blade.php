@@ -2,10 +2,15 @@
 
 @section('content')
     <div class="container">
-        <ul>Все :
-            @foreach ($tasks as $task)
-                <a href="task/{{$task->id}}"><li>{{$task->title}}</li></a>
-            @endforeach
-        </ul>
+        <div>
+            <h2>{{$tasks->title}}</h2>
+            <p>{{$tasks->text}}</p>
+        </div>
+        <div>
+
+{{--            @foreach ($tasks as $task)--}}
+{{--                <a href="task/{{$task->id}}"><li>{{$task->title}}</li></a>--}}
+{{--            @endforeach--}}
+        </div>
     </div>
 @endsection
