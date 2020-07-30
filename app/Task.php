@@ -17,7 +17,7 @@ class Task extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'student_user_id');
+        return $this->belongsTo(User::class, 'teacher_user_id');
     }
 
     public function answers()

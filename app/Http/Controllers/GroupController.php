@@ -52,7 +52,7 @@ class GroupController extends Controller
                 [
                     'name' => $request->name,
                 ]); //конструктор запроса!!! с уловием user_id текушего пользователя
-        return redirect()->route('home');
+                return redirect()->route('home');
     }
 
     /**
