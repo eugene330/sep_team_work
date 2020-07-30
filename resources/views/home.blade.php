@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <center><a href="{{ route('groups.create') }}" class="btn btn-success"><i class="fa fa-plus">Создать группу</i></a></center>
+    <div style="text-align: center;"><a href="{{ route('groups.create') }}" class="btn btn-success"><i class="fa fa-plus">Создать группу</i></a></div>
     <div class="home_container">
         <ul>Группы где Вы преподаватель
             @foreach ($groups_teacher as $group_teacher)
