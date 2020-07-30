@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Answer;
 use App\Group;
 use App\Task;
 use Illuminate\Http\Request;
@@ -52,9 +53,21 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Task $task, Answer $answer)
     {
-        dd($id);
+
+        if($task->teacher_user_id === Auth::user()->id) {
+            return view('tasks.show_task', ['tasks' => $task]);
+        }else {
+            for ($i = 0; $i <= DB::table('groups_students')->count()-1; $i++)
+            {
+                if($task->group_id === DB::table('groups_students')->get()[$i]->group_id &&
+                    DB::table('groups_students')->get()[$i]->student_user_id === Auth::user()->id) {
+                    return view('tasks.show_task', ['tasks' => $task]);
+                    break;
+                }
+            }
+        }
     }
 
     /**
