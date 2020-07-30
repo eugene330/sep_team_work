@@ -23,5 +23,5 @@ Route::resource('groups', 'GroupController');
 
 Route::get('group/{group}', 'TaskController@index');
 
-Route::get('group/task/{task}', 'AnswerController@index');
+Route::get('group/task/{task}', 'TaskController@show');
 
