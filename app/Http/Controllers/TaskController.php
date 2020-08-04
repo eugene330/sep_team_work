@@ -23,7 +23,10 @@ class TaskController extends Controller
 
         if ($arrayTeacher === Auth::user()->id || in_array(Auth::user()->id, $arrayStudents)) {
             $tasks = $group->tasks;
-            return view('groups.show_group', ['tasks' => $tasks]);
+            return view('groups.show_group', [
+                'tasks' => $tasks,
+                'group' => $group
+            ]);
         }
     }
 
@@ -32,9 +35,9 @@ class TaskController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Group $group)
     {
-        return view("tasks.create_task");
+        return view("tasks.create_task", ['group' => $group]);
     }
 
     /**
@@ -43,27 +46,24 @@ class TaskController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Group $group, Request $request)
     {
         $this->validate($request, [
             'title' => 'required|max:255',
             'text' => 'required|max:255',
         ]);
 
-        Task::
-            create(
-                [
-                    'title' => $request->title,
-                    'text' => $request->text,
-                    'finish_date' => $request->finish_date,
-                ]);
-        return redirect()->route('home');
-        dd($request);
-//        new Task(array(
-//            'title' => $request->title,
-//            'text' => $request->text,
-//        ));
-//        return redirect()->route('home');
+        $group->tasks()->
+        create(
+            [
+                'teacher_user_id' => $request->user()->id,
+                'title' => $request->title,
+                'text' => $request->text,
+                'finish_date' => $request->finish_date,
+            ]);
+        return redirect()->route('tasks.show', [
+            'id' => $group->id,
+        ]);
     }
 
     /**
@@ -75,12 +75,11 @@ class TaskController extends Controller
     public function show(Task $task, Answer $answer)
     {
 
-        if($task->teacher_user_id === Auth::user()->id) {
+        if ($task->teacher_user_id === Auth::user()->id) {
             return view('tasks.show_task', ['tasks' => $task]);
-        }else {
-            for ($i = 0; $i <= DB::table('groups_students')->count()-1; $i++)
-            {
-                if($task->group_id === DB::table('groups_students')->get()[$i]->group_id &&
+        } else {
+            for ($i = 0; $i <= DB::table('groups_students')->count() - 1; $i++) {
+                if ($task->group_id === DB::table('groups_students')->get()[$i]->group_id &&
                     DB::table('groups_students')->get()[$i]->student_user_id === Auth::user()->id) {
                     return view('tasks.show_task', ['tasks' => $task]);
                     break;

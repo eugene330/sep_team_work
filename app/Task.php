@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Task extends Model
 {
     protected $fillable = [
-        'finish_date', 'title', 'text', 'arhiv',
+        'finish_date', 'title', 'text', 'arhiv', 'teacher_user_id'
     ];
 
     public function groups()
