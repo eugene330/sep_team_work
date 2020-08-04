@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <!-- Форма новой задачи -->
-        <form action="{{ route('tasks.store') }}" method="POST" class="form-horizontal">
+        <form action="{{ route('tasks.store', $group->id) }}" method="POST" class="form-horizontal">
         {{ csrf_field() }}
 
         <!-- Имя задачи -->
@@ -11,6 +11,7 @@
                 <label for="task" class="col-sm-3 control-label"></label>
 
                 <div class="col-sm-6">
+                    <input type="hidden" name="id" value="{{$group->id}}">
                     Задача<input type="text" name="title" id="task-name" class="form-control">
                     Текст задачи<textarea name="text" id="task-text" class="form-control"></textarea>
                     Дата завершения<input type="date" id="date" name="finish_date"/>

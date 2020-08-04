@@ -21,8 +21,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('groups', 'GroupController');
 
-Route::get('group/{group}', 'TaskController@index');
+Route::get('group/{group}', 'TaskController@index')->name('tasks.show');
+
+Route::get('group/{group}/create', 'TaskController@create')->name('tasks.create');
+Route::post('group/{group}/tasks', 'TaskController@store')->name('tasks.store');
 
 Route::get('group/task/{task}', 'TaskController@show');
 
-Route::resource('group/tasks', 'TaskController');
