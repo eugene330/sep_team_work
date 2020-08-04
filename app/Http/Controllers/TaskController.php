@@ -74,15 +74,19 @@ class TaskController extends Controller
      */
     public function show(Task $task, Answer $answer)
     {
-
+        //dd($answer->get()[$task->id-1]->text);
         if ($task->teacher_user_id === Auth::user()->id) {
-            return view('tasks.show_task', ['tasks' => $task]);
+            return view('tasks.show_task', ['tasks' => $task, 'answer' => $answer->get()]);
         } else {
             for ($i = 0; $i <= DB::table('groups_students')->count() - 1; $i++) {
                 if ($task->group_id === DB::table('groups_students')->get()[$i]->group_id &&
                     DB::table('groups_students')->get()[$i]->student_user_id === Auth::user()->id) {
-                    return view('tasks.show_task', ['tasks' => $task]);
-                    break;
+                    if($answer->get()->student_user_id === Auth::user()->id && $answer->get()[0]->task_id === $task->id) {
+                        return view('tasks.show_task', [
+                            'tasks' => $task,
+                            'answer' => $answer->get(),
+                        ]);
+                    }
                 }
             }
         }

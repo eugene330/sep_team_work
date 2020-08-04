@@ -15,10 +15,13 @@ class AnswerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Task $task, Answer $answer,Group $group)
+    public function index(Answer $answer, Task $task)
     {
-
+        return view('tasks.show_task', [
+            'answer' => $answer,
+        ]);
     }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -26,13 +29,13 @@ class AnswerController extends Controller
      */
     public function create()
     {
-        //
+//
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -43,7 +46,7 @@ class AnswerController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -54,7 +57,7 @@ class AnswerController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -65,8 +68,8 @@ class AnswerController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -77,7 +80,7 @@ class AnswerController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
