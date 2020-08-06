@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Group;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class GroupController extends Controller
 {
@@ -51,6 +53,7 @@ class GroupController extends Controller
             ->create(
                 [
                     'name' => $request->name,
+                    'invite'=>str_random(),
                 ]); //конструктор запроса!!! с уловием user_id текушего пользователя
                 return redirect()->route('home');
     }
@@ -98,5 +101,19 @@ class GroupController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function invite($hash, Group $group)
+    {
+        if(Auth::user()) {
+            $invite = $group->get()->pluck('invite')->toArray();
+            $id = $group->get()->pluck('id','invite')->toArray();
+            if(in_array($hash, $invite)) {
+                DB::table('groups_students')->insert(
+                    ['group_id' => $id[$hash], 'student_user_id' => Auth::user()->id]
+                );
+                return redirect('home');
+            }
+        }
     }
 }

@@ -2,17 +2,17 @@
 
 @section('content')
     <div class="container">
-        {{$answer}}
+
         <div>
             <h2>{{$tasks->title}}</h2>
             <p>{{$tasks->text}}</p>
         </div>
         <div>
 
-{{--            {{dd($answer)}}--}}
-            {{--            @foreach ($tasks as $task)--}}
-            {{--                <a href="task/{{$task->id}}"><li>{{$task->title}}</li></a>--}}
-            {{--            @endforeach--}}
+            {{dd($answer)}}
+{{--                        @foreach ($arr_id as $answer)--}}
+
+{{--                        @endforeach--}}
         </div>
         <div>
             <!-- Форма новой задачи -->

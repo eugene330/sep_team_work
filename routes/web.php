@@ -30,3 +30,5 @@ Route::get('group/task/{task}', 'TaskController@show');
 Route::get('group/{group}/{task}', 'AnswerController@index');
 Route::get('group/{group}/{task}/create', 'AnswerController@create')->name('answers.create');
 Route::post('group/{group}/{task}/answer', 'AnswerController@store')->name('answers.store');
+
+Route::get('invite/{hash}', 'GroupController@invite');

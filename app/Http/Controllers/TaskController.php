@@ -74,17 +74,22 @@ class TaskController extends Controller
      */
     public function show(Task $task, Answer $answer)
     {
-        //dd($answer->get()[$task->id-1]->text);
+        $arr_id = $task->answers->pluck('text')->toArray();
+//        dd($arr_id);
+//        if(in_array(Auth::user()->id, $arr_id)){dd("1");}
+//       else dd("2");
+        //dd($answer->get()[0]->student_user_id );
+      // dd($task);
         if ($task->teacher_user_id === Auth::user()->id) {
-            return view('tasks.show_task', ['tasks' => $task, 'answer' => $answer->get()]);
+            return view('tasks.show_task', ['tasks' => $task, 'answer' => $arr_id]);
         } else {
-            for ($i = 0; $i <= DB::table('groups_students')->count() - 1; $i++) {
+            for ($i = 0; $i < DB::table('groups_students')->count(); $i++) {
                 if ($task->group_id === DB::table('groups_students')->get()[$i]->group_id &&
                     DB::table('groups_students')->get()[$i]->student_user_id === Auth::user()->id) {
-                    if($answer->get()->student_user_id === Auth::user()->id && $answer->get()[0]->task_id === $task->id) {
+                    if(Auth::user()->id) {
                         return view('tasks.show_task', [
                             'tasks' => $task,
-                            'answer' => $answer->get(),
+                            'answer' => $arr_id,
                         ]);
                     }
                 }
